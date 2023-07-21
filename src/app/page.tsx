@@ -1,12 +1,18 @@
+// homeページ
 import Image from 'next/image'
+import UserCard from './component/user_card'
 
 export default function Home() {
+  //:TODO ログインしてなかったら/loginに遷移
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
-    <h1 className="text-3xl ">
-          Hello world!
+      <div>
+        <h1 className="text-3xl ">
+          Welcome to SayCheese!
         </h1>
-    </main>
+        <UserCard/>
+        <UserCard/>
+        <UserCard/>
+
+      </div>
   )
 }
