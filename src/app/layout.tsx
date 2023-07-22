@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Providers } from "./component/provider"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='h-screen bg-cyan-50 text-cyan-800 text-center font-mono'>
+        <div className='bg-cyan-50 text-cyan-800 text-center font-mono tracking-wide'>
           {/* サイドバー */}
           {/* ログイン時のみ表示 */}
           <div className='bg-cyan-100 w-screen sticky top-0 flex flex-row z-50 px-5'>
@@ -46,7 +47,7 @@ export default function RootLayout({
           </div>
           {/* コンテンツ */}
           <div className='p-5'>
-            {children}
+            <Providers>{children}</Providers>
           </div>
         </div>
       </body>

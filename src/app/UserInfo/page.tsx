@@ -1,13 +1,19 @@
+"use client"
 // ユーザ情報ページ
-import Image from 'next/image'
+import ProfileImg from '../component/profile_img'
+
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className='h-screen'>
+      <ProfileImg width="250" height="250" src="/profile.jpg"/>
+      <p>プロフィール</p>
+        <p>年齢性別場所属性
+        </p>
+      <p>instaアカウント</p>
+      <p>自己紹介ぶん</p>
+      <p>ポートフォリオ</p>
 
-    <h1 className="text-3xl ">
-          it's user info page
-        </h1>
-    </main>
+    </div>
   )
 }
