@@ -8,7 +8,7 @@ export default function ProfileImg(props:{src:string,width:number,height:number}
     }
 
   return (
-    <div className='flex justify-center my-5'>
+    <div className='flex justify-center my-5 z-30 relative'>
         <Avatar
           src="https://i.pravatar.cc/150?u=a04258114e29026702d"
           squared

@@ -6,7 +6,7 @@ import { Badge,Grid } from "@nextui-org/react";
 export default function UserCard(props:{name:string,sex:string,place:string,src:string}) {
   
   return (
-    <div className='bg-white active:bg-slate-100 mb-3 drop-shadow-xl z-40 rounded-lg text-center p-5'>
+    <div className='bg-white active:bg-slate-100 mb-3 drop-shadow-xl rounded-lg text-center p-5'>
       <Link href="/UserInfo">
         <ProfileImg width="250" height="250" src={props.src}/>
         <p className='text-cyan-600	text-xl tracking-wide	font-semibold'>ユーザ名</p>

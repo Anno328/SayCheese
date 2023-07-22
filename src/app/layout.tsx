@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='bg-cyan-50 text-cyan-800 text-center font-mono tracking-wide'>
+        <div className='h-full bg-cyan-50 text-cyan-800 text-center font-mono tracking-wide'>
           {/* サイドバー */}
           {/* ログイン時のみ表示 */}
           <div className='bg-cyan-100 w-screen sticky top-0 flex flex-row z-50 px-5'>
