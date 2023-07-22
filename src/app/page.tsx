@@ -3,7 +3,7 @@
 // homeページ
 import Image from 'next/image'
 import UserCard from './component/user_card'
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
   //:TODO ログインしてなかったら/loginに遷移

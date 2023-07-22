@@ -23,7 +23,6 @@ export default function Home() {
       <p className='text-cyan-600 my-5 text-lg tracking-wide	font-semibold text-left'>ポートフォリオ</p>
       <p>texttexttexttexttexttexttexttexttexttext</p>
       <p>texttexttexttexttexttexttexttexttexttext</p>
-
     </div>
   )
 }
