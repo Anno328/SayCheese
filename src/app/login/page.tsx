@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Link from 'next/link'
 
 export default function Home() {
 
@@ -48,6 +49,9 @@ export default function Home() {
           <input className='bg-cyan-600 hover:bg-cyan-500 active:bg-cyan-700 text-slate-50 rounded-lg px-5 my-5' type="submit" value="ログイン"/>
         </form>
       </div>
+      <Link href="/AccountRegister">
+        <p className='bg-cyan-600 hover:bg-cyan-500 active:bg-cyan-700 text-slate-50 rounded-lg px-5 my-5'>登録</p>
+      </Link>
     </div>
   )
 }
