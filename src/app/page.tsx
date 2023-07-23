@@ -4,9 +4,21 @@
 import Image from 'next/image'
 import UserCard from './component/user_card'
 import { useForm } from "react-hook-form";
+import { useState,useEffect } from 'react';
 
 export default function Home() {
   //:TODO ログインしてなかったら/loginに遷移
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch('/api/user');
+      const data = await response.json();
+      console.log(data);
+      setUsers(data.users);
+    };
+    fetchUsers();
+  }, []);
 
   const { register, handleSubmit } = useForm();
   const onSubmit: any = data => console.log(data);
