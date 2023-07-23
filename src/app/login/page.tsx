@@ -4,16 +4,28 @@
 import Image from 'next/image'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Home() {
-  
+
+  const [loginInfo, setLoginInfo] = useState();
   const { register, handleSubmit } = useForm();
   const router = useRouter();
 
-  const onSubmit: any = data => {
+  const onSubmit: any = async(data) => {
+    const response = await fetch('/api/login',
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email:data.email,pass:data.pass}),
+    });
+    const loginInfo = await response.json();
+    // setLoginInfo(loginInfo);
+    console.log(loginInfo)
 
-    console.log(data)
-    router.push('/');
+    // router.push('/');
   };
 
   return (
