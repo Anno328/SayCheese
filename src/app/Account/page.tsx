@@ -2,10 +2,24 @@
 // アカウントページ
 import ProfileImg from '../component/profile_img'
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
+
   const onSubmit: any = data => console.log(data);
+  const onLogoutButtonClick: any = async() => {
+    const response = await fetch('/api/logout',
+    {method: "POST"});
+    const logoutInfo = await response.json();
+
+    // ログアウト成功したらログイン画面に遷移
+    if(logoutInfo.error == null){
+      sessionStorage.setItem('isLogin','false');
+      router.push('/login');
+    }
+  }
 
   return (
     <div className='h-screen'>
@@ -76,6 +90,9 @@ export default function Home() {
         </div> */}
 
         <input className='bg-cyan-600 hover:bg-cyan-500 active:bg-cyan-700 text-slate-50 rounded-lg px-5' type="submit" value="更新"/>
+      </form>
+      <form className='' onSubmit={handleSubmit(onLogoutButtonClick)}>
+        <input className='bg-cyan-600 hover:bg-cyan-500 active:bg-cyan-700 text-slate-50 rounded-lg px-5' type="submit" value="ログアウト"/>
       </form>
     </div>
   )

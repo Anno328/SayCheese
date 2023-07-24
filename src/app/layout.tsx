@@ -21,7 +21,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [AccountInfo, setAccountInfo] = useState({ name:"",isLogin:false });
+  const [AccountInfo, setAccountInfo] = useState({ userid:"" });
   AccountInfoContext = createContext({AccountInfo,setAccountInfo});
 
   return (

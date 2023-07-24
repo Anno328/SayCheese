@@ -4,20 +4,30 @@
 import Image from 'next/image'
 import UserCard from './component/user_card'
 import { useForm } from "react-hook-form";
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useContext } from 'react';
+import { AccountInfoContext } from './layout'
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  //:TODO ログインしてなかったら/loginに遷移
-
+  
+  const { AccountInfo } = useContext(AccountInfoContext);
+  const router = useRouter();
   const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    const response = await fetch('/api/user');
+    const data = await response.json();
+    console.log(data);
+    setUsers(data.users);
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch('/api/user');
-      const data = await response.json();
-      console.log(data);
-      setUsers(data.users);
-    };
-    fetchUsers();
+    // ログインしてなかったら/loginに遷移
+    if(sessionStorage.getItem('isLogin') == "false"){
+      router.push('/login');
+    }else{
+      fetchUsers();
+    }
   }, []);
 
   const { register, handleSubmit } = useForm();
