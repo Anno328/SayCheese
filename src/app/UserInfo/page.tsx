@@ -1,9 +1,32 @@
 "use client"
 // ユーザ情報ページ
 import ProfileImg from '../component/profile_img'
-
+import { useState,useEffect,useContext } from 'react';
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
+  const [user, setUser] = useState([]);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const userid = searchParams.get("userid");
+    console.log(userid)
+
+    const fetchUser = async () => {
+      const response = await fetch(`/api/userInfo?userid=${userid}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+      const data = await response.json();
+      setUser(data.User);
+      console.log(data);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div className='h-screen'>
       <ProfileImg width="250" height="250" src="/profile.jpg"/>

@@ -14,14 +14,24 @@ export default function Home() {
   const router = useRouter();
   const [users, setUsers] = useState([]);
 
-  const fetchUsers = async () => {
-    const response = await fetch('/api/user');
-    const data = await response.json();
-    console.log(data);
-    setUsers(data.users);
-  };
+  const Users = ()=>{
+    console.log(users)
+    if(users){
+      return users.map((user) => 
+      <UserCard name= {user.name} place={user.place} src="/profile.jpg" userid={user.userid}/>
+      );
+    }else{
+      return 'loading';
+    }
+  }
 
   useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch('/api/user');
+      const data = await response.json();
+      setUsers(data.User);
+      console.log(users);
+    };
     // ログインしてなかったら/loginに遷移
     if(sessionStorage.getItem('isLogin') == "false"){
       router.push('/login');
@@ -66,12 +76,7 @@ export default function Home() {
           </form>
         </div>
         {/* ユーザ一覧表示 */}
-        <UserCard name= "龍太郎" sex="男" place="愛知県豊橋市" src="/profile.jpg"/>
-        <UserCard name= "龍太郎" sex="男" place="愛知県豊橋市" src="/profile.jpg"/>
-        <UserCard name= "龍太郎" sex="男" place="愛知県豊橋市" src="/profile.jpg"/>
-        <UserCard name= "龍太郎" sex="男" place="愛知県豊橋市" src="/profile.jpg"/>
-        <UserCard name= "龍太郎" sex="男" place="愛知県豊橋市" src="/profile.jpg"/>
-        <UserCard name= "龍太郎" sex="男" place="愛知県豊橋市" src="/profile.jpg"/>
+        <Users />
       </div>
   )
 }
