@@ -4,12 +4,14 @@
 import Image from 'next/image'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AccountInfoContext } from '../layout'
 import Link from 'next/link'
 
 export default function Home() {
 
-  const [loginInfo, setLoginInfo] = useState();
+  let { AccountInfo,setAccountInfo } = useContext(AccountInfoContext);
+
   const { register, handleSubmit } = useForm();
   const router = useRouter();
 
@@ -24,9 +26,15 @@ export default function Home() {
     });
     const loginInfo = await response.json();
     // setLoginInfo(loginInfo);
-    console.log(loginInfo)
+    console.log(loginInfo.error)
 
-    // router.push('/');
+    // ログイン成功したらホーム画面に遷移
+    if(loginInfo.error == null){
+      setAccountInfo({name: "anno",isLogin: true})
+      console.log(AccountInfo);
+      router.push('/');
+    }
+
   };
 
   return (

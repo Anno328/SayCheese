@@ -5,7 +5,33 @@ import { useForm } from "react-hook-form";
 
 export default function Home() {
   const { register, handleSubmit } = useForm();
-  const onSubmit: any = data => console.log(data);
+
+  const onSubmit: any = async(data) => {
+    const response = await fetch('/api/registerUser',
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email:data.email,
+        pass:data.pass,
+        name:data.name,
+        age:data.age,
+        sex:data.sex,
+        place:data.place,
+        type:data.type,
+        insta:data.instaurl,
+        description:data.desvription,
+        isVisible:data.isVisible
+      }),
+    });
+    const loginInfo = await response.json();
+    // setLoginInfo(loginInfo);
+    console.log(loginInfo)
+
+    // router.push('/');
+  };  
 
   return (
     <div className='h-screen'>
@@ -21,7 +47,7 @@ export default function Home() {
             <input className='my-5' {...register("pass")} placeholder="パスワード" />
             <br />
           </div>
-          <input {...register("userName")} placeholder="ユーザ名" />
+          <input {...register("name")} placeholder="ユーザ名" />
           <div>
             <select {...register("age")}>
               <option value="">年齢</option>

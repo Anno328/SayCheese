@@ -2,12 +2,13 @@ import { NextResponse } from "next/server";
 import supabase from "../../utils/supabase";
 
 export async function POST(request: Request) {
-  // console.log(request.body);
-  // return NextResponse.json({});
+  const body = await request.json()
+  const {email, pass} = body
+
 
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: 'example@email.com',
-    password: 'example-password',
+    email: email,
+    password: pass,
   })
   return NextResponse.json({ data,error });
 }
